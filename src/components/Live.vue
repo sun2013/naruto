@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    直播
+    zhibo
   </div>
 </template>
 
