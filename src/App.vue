@@ -1,66 +1,81 @@
 <template>
   <div id="app">
-    <Tabbar></Tabbar>
+    <Topbar></Topbar>
     <transition :name="transitionName">
-      <router-view class="child-view"></router-view>
+      <router-view class="Router"></router-view>
     </transition>
+    <Tabbar></Tabbar>
   </div>
 </template>
 
 <script>
 import Tabbar from './components/Tabbar'
+import Header from './components/Header'
 export default {
   name: 'app',
+  head() {
+    title: "dilidili"
+  },
   components: {
-    Tabbar
+    Tabbar,
+    Topbar: Header
   },
   data() {
     return {
-      transitionName: 'slide-left'
+      transitionName: 'slide-right',
+      title: "dilidili"
     }
   },
-  beforeRouteUpdate(to, from, next) {
-    // 如果isBack为true时，证明是用户点击了回退，执行slide-right动画
-    let isBack = this.$router.isBack
-    if (isBack) {
-      this.transitionName = 'slide-right'
-    } else {
-      this.transitionName = 'slide-left'
+  watch: {
+    '$route'(to, from) {
+      let isBack = this.$router.isBack  //  监听路由变化时的状态为前进还是后退
+      console.log(isBack)
+      if (!isBack) {
+        this.transitionName = 'slide-right'
+      } else {
+        this.transitionName = 'slide-left'
+      }
+      this.$router.isBack = false
     }
-    // 做完回退动画后，要设置成前进动画，否则下次打开页面动画将还是回退
-    this.$router.isBack = false
-    next()
   }
 }
 </script>
 
 <style lang="scss">
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font: 12px/1 Microsoft Yahei, Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #fb7299;
 }
 
-.child-view {
+.Router {
   position: absolute;
   width: 100%;
-  transition: all .8s cubic-bezier(.55, 0, .1, 1);
+  transition: all .8s ease;
+  top: 40px;
 }
 
 .slide-left-enter,
 .slide-right-leave-active {
   opacity: 0;
-  -webkit-transform: translate(50px, 0);
-  transform: translate(50px, 0);
+  -webkit-transform: translate(100%, 0);
+  transform: translate(100%, 0);
 }
 
 .slide-left-leave-active,
 .slide-right-enter {
   opacity: 0;
-  -webkit-transform: translate(-50px, 0);
-  transform: translate(-50px, 0);
+  -webkit-transform: translate(-100%, 0);
+  transform: translate(-100% 0);
 }
 </style>

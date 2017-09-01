@@ -1,28 +1,34 @@
 <template>
-  <mt-tabbar>
-    <mt-tab-item id="直播">
-      <img slot="icon" src="../assets/live.png">
-      <router-link :to="'Live'"><img slot="icon" src="../assets/live.png">直播</router-link>
+  <mt-tabbar v-model="selected">
+    <mt-tab-item id="live">
+      <router-link :to="'Live'">
+        <i class="iconfont icon-zhibo1"></i>
+        直播</router-link>
     </mt-tab-item>
-    <mt-tab-item id="推荐">
-      <img slot="icon" src="../assets/recommend.png">
-      <router-link :to="'Recommend'"><img slot="icon" src="../assets/recommend.png">推荐</router-link>
+    <mt-tab-item id="recommend">
+      <router-link :to="'Recommend'">
+        <i class="iconfont icon-remen"></i>
+        推荐</router-link>
     </mt-tab-item>
-    <mt-tab-item id="追番">
-      <img slot="icon" src="../assets/drama.png">
-      <router-link :to="'Drama'"><img slot="icon" src="../assets/drama.png">追番</router-link>
+    <mt-tab-item id="drama">
+      <router-link :to="'Drama'">
+        <i class="iconfont icon-zhuifanshu"></i>
+        追番</router-link>
     </mt-tab-item>
-    <mt-tab-item id="分区">
-      <img slot="icon" src="../assets/part.png">
-      <router-link :to="'Part'"><img slot="icon" src="../assets/part.png">分区</router-link>
+    <mt-tab-item id="part">
+      <router-link :to="'Part'">
+        <i class="iconfont icon-fenqu"></i>
+        分区</router-link>
     </mt-tab-item>
-    <mt-tab-item id="动态">
-      <img slot="icon" src="../assets/event.png">
-      <router-link :to="'Event'"><img slot="icon" src="../assets/event.png">动态</router-link>
+    <mt-tab-item id="event">
+      <router-link :to="'Event'">
+        <i class="iconfont icon-xiaolvdashitubiao33304"></i>
+        动态</router-link>
     </mt-tab-item>
-    <mt-tab-item id="发现">
-      <img slot="icon" src="../assets/find.png">
-      <router-link :to="'Find'"><img slot="icon" src="../assets/find.png">发现</router-link>
+    <mt-tab-item id="find">
+      <router-link :to="'Find'">
+        <i class="iconfont icon-faxian"></i>
+        发现</router-link>
     </mt-tab-item>
   </mt-tabbar>
 </template>
@@ -30,12 +36,12 @@
 <script>
 import { Tabbar, TabItem } from 'mint-ui'
 export default {
-  name: 'hello',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      selected: '1'
     }
-  }
+  },
+
 }
 </script>
 
@@ -57,6 +63,16 @@ li {
 }
 
 a {
-  color: #42b983;
+  text-decoration: none;
+  color: #757575;
+}
+
+.router-link-active {
+  color: #fb7299;
+}
+.mint-tabbar i{
+  display: block;
+  font-size: 20px;
+  padding:4px; 
 }
 </style>
