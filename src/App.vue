@@ -22,21 +22,29 @@ export default {
   },
   data() {
     return {
-      transitionName: 'slide-right',
-      title: "dilidili"
+      transitionName: 'slide-left',  //设置动画效果
+      title: "dilidili",
+      initIndex: '1', //初始索引，用来判断页面切换位置
     }
   },
   watch: {
     '$route'(to, from) {
-      let isBack = this.$router.isBack  //  监听路由变化时的状态为前进还是后退
-      console.log(isBack)
-      if (!isBack) {
-        this.transitionName = 'slide-right'
-      } else {
+      let indexOf = to.params.index
+      if(to.name == 'Live'){
+        indexOf = 1;
+      }
+      //设置动画方向
+      if (indexOf >= this.initIndex) {
+        this.initIndex = indexOf;
         this.transitionName = 'slide-left'
       }
-      this.$router.isBack = false
+      if (indexOf < this.initIndex) {
+        this.transitionName = 'slide-right'
+        this.initIndex = indexOf;
+      }
     }
+  },
+  methods: {
   }
 }
 </script>

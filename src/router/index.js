@@ -16,7 +16,6 @@ export default new Router({
     routes: [{
             path: '/',
             name: 'Live',
-            component: Live,
             redirect: '/live'
         },
         {
